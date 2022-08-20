@@ -506,7 +506,8 @@ MonoBehaviour:
   m_moveSpeed: 1
   m_moveVerticalSpeed: 5
   m_jumpForce: 15
-  m_useDebugInputs: 1
+  m_jumpDeadzone: 0.5
+  m_useDebugInputs: 0
   m_moveAxis: Horizontal
   m_moveVerticalAxis: Vertical
   m_jumpKey: 32
@@ -537,7 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 09bb3911a2f6e86478a96ecf4f1bc5a0, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:

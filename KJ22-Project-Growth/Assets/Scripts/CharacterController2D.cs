@@ -53,6 +53,7 @@ public class CharacterController2D : MonoBehaviour
 	
 	private RaycastHit2D[] hits = new RaycastHit2D[5];
 	private bool m_canJump = true;
+	private bool m_wantToJump = false;
 
 	private PlayerInput m_playerInput;
 	private InputActionMap m_actionsMap;
@@ -109,9 +110,16 @@ public class CharacterController2D : MonoBehaviour
         {
 			m_inputMovement = m_moveAction.ReadValue<Vector2>();
 
+			if (m_wantToJump)
+			{
+				m_inputMovement.y = 1f;
+				m_wantToJump = false;
+			}
 			// Deadzone
-			if (m_inputMovement.y < m_jumpDeadzone && m_inputMovement.y > 0)
+			else if (m_inputMovement.y < m_jumpDeadzone && m_inputMovement.y > 0)
+			{
 				m_inputMovement.y = 0f;
+			}
 		}
 	}
 
@@ -220,7 +228,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void OnJump()
 	{
-		m_inputMovement.y = 1;
+		m_wantToJump = true;
 	}
 
 	public void Shoot()
