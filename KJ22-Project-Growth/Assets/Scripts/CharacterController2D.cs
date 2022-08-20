@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
+using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour
@@ -19,6 +21,9 @@ public class CharacterController2D : MonoBehaviour
 
 	[SerializeField, Min(1)]
 	private float m_jumpForce = 10;
+
+	[SerializeField, Range(0f, 0.9f)]
+	private float m_jumpDeadzone = .5f;
 
 	[BoxGroup("Debug")]
 	[SerializeField]
@@ -49,20 +54,51 @@ public class CharacterController2D : MonoBehaviour
 	private RaycastHit2D[] hits = new RaycastHit2D[5];
 	private bool m_canJump = true;
 
+	private PlayerInput m_playerInput;
+	private InputActionMap m_actionsMap;
+	private InputAction m_moveAction;
+
     private void Awake()
     {
 		m_body = GetComponent<Rigidbody2D>();
 		m_growthComponent = GetComponent<GrowthComponent>();
+		m_playerInput = GetComponent<PlayerInput>();
+		WeaponController weaponController = GetComponentInChildren<WeaponController>();
+		m_actionsMap = m_playerInput.actions.FindActionMap("Player");
+		m_moveAction = m_actionsMap.FindAction("Move");
+		var shoot = m_actionsMap.FindAction("Shoot");
+
+		shoot.started += _ => { print("started " + name); weaponController.StartShooting(); };
+		shoot.performed += _ => { print("performed " + name); };
+		shoot.canceled += _ => { print("cancel " + name); weaponController.StopShooting();  };
 	}
 
-    private void Update()
+    private void OnEnable()
+    {
+		m_actionsMap.Enable();
+    }
+
+	private void OnDisable()
+	{
+		m_actionsMap.Disable();
+	}
+
+	private void Update()
     {
 		if (m_useDebugInputs)
         {
 			m_inputMovement.x = Input.GetAxisRaw(m_moveAxis);
 			m_inputMovement.y = Input.GetAxisRaw(m_moveVerticalAxis);
 		}
-    }
+		else
+        {
+			m_inputMovement = m_moveAction.ReadValue<Vector2>();
+
+			// Deadzone
+			if (m_inputMovement.y < m_jumpDeadzone && m_inputMovement.y > 0)
+				m_inputMovement.y = 0f;
+		}
+	}
 
 
 	private void FixedUpdate()
@@ -116,12 +152,6 @@ public class CharacterController2D : MonoBehaviour
 		m_lastGroundNormal = Vector2.up;
 	}
 
-    public void Move(Vector2 normalizedValue)
-    {
-		MoveHorizontal(normalizedValue.x);
-		MoveVertical(normalizedValue.y);
-	}
-
 	public void MoveHorizontal(float normalizedValue)
 	{
 		m_body.velocity += Vector2.right * (normalizedValue * m_moveSpeed);
@@ -166,4 +196,31 @@ public class CharacterController2D : MonoBehaviour
 		return m_useDebugInputs;
 
 	}
+
+	#region Inputs
+	public void OnMove(InputValue v)
+	{
+		m_inputMovement = v.Get<Vector2>();
+	}
+
+	public void OnJump()
+	{
+		m_inputMovement.y = 1;
+	}
+
+	public void Shoot()
+    {		
+		Debug.Log("shoot");
+    }
+
+	public void OnMeleeAttack()
+	{
+		Debug.Log("attack");
+	}
+
+	public void OnAim(InputValue v)
+    {
+		print("cam pos="+v.Get<Vector2>());
+    }
+	#endregion
 }
