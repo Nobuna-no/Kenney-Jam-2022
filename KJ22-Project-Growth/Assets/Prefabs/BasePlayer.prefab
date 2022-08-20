@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 109354983}
   - component: {fileID: 5612013856900681112}
-  - component: {fileID: 109354985}
   m_Layer: 6
   m_Name: Cursor Pivot
   m_TagString: Untagged
@@ -47,108 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cursorPivotTransform: {fileID: 109354983}
---- !u!114 &109354985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 109354982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6da43522623d4704e979466dc7650b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Feedbacks: []
-  InitializationMode: 2
-  SafeMode: 3
-  Direction: 0
-  AutoChangeDirectionOnEnd: 0
-  AutoPlayOnStart: 0
-  AutoPlayOnEnable: 0
-  ForceTimescaleMode: 0
-  ForcedTimescaleMode: 1
-  DurationMultiplier: 1
-  DisplayFullDurationDetails: 0
-  PlayerTimescaleMode: 1
-  CooldownDuration: 0
-  InitialDelay: 0
-  CanPlay: 1
-  CanPlayWhileAlreadyPlaying: 1
-  ChanceToPlay: 100
-  FeedbacksIntensity: 1
-  Events:
-    TriggerMMFeedbacksEvents: 0
-    TriggerUnityEvents: 1
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPause:
-      m_PersistentCalls:
-        m_Calls: []
-    OnResume:
-      m_PersistentCalls:
-        m_Calls: []
-    OnRevert:
-      m_PersistentCalls:
-        m_Calls: []
-    OnComplete:
-      m_PersistentCalls:
-        m_Calls: []
-  DebugActive: 0
-  FeedbacksList:
-  - rid: 1229696463303344129
-  KeepPlayModeChanges: 0
-  PerformanceMode: 0
-  ForceStopFeedbacksOnDisable: 1
-  references:
-    version: 2
-    RefIds:
-    - rid: 1229696463303344129
-      type: {class: MMF_InstantiateObject, ns: MoreMountains.Feedbacks, asm: MoreMountains.Feedbacks}
-      data:
-        Active: 1
-        UniqueID: 840620150
-        Label: Instantiate Object
-        Channel: 0
-        Chance: 100
-        DisplayColor: {r: 0, g: 0, b: 0, a: 1}
-        Timing:
-          TimescaleMode: 0
-          ExcludeFromHoldingPauses: 0
-          ContributeToTotalDuration: 1
-          InitialDelay: 0
-          CooldownDuration: 0
-          InterruptsOnStop: 1
-          NumberOfRepeats: 0
-          RepeatForever: 0
-          DelayBetweenRepeats: 1
-          MMFeedbacksDirectionCondition: 0
-          PlayDirection: 0
-          ConstantIntensity: 0
-          UseIntensityInterval: 0
-          IntensityIntervalMin: 0
-          IntensityIntervalMax: 0
-          Sequence: {fileID: 0}
-          TrackID: 0
-          Quantized: 0
-          TargetBPM: 120
-        Owner: {fileID: 109354985}
-        DebugActive: 0
-        GameObjectToInstantiate: {fileID: 0}
-        PositionMode: 0
-        AlsoApplyRotation: 0
-        AlsoApplyScale: 0
-        TargetTransform: {fileID: 0}
-        TargetPosition: {x: 0, y: 0, z: 0}
-        PositionOffset: {x: 0, y: 0, z: 0}
-        RandomizePosition: 0
-        RandomizedPositionMin: {x: 0, y: 0, z: 0}
-        RandomizedPositionMax: {x: 1, y: 1, z: 1}
-        ParentTransform: {fileID: 0}
-        CreateObjectPool: 1
-        ObjectPoolSize: 50
-        MutualizePools: 1
+  m_bulletPerSecond: 5
+  m_bulletPrefab: {fileID: 8990313941690022714, guid: 4af0821ba1ec0354dbe020ee57dd454c, type: 3}
+  m_bulletSpeed: 5
 --- !u!1 &1603475011
 GameObject:
   m_ObjectHideFlags: 0
