@@ -48,6 +48,7 @@ public class CharacterController2D : MonoBehaviour
 	private float m_stickinessVel = 0.75f;
 
 	private Rigidbody2D m_body;
+	public Rigidbody2D Rigidbody => m_body;
 	private GrowthCore m_growthComponent;
 	private Vector2 m_inputMovement = Vector2.zero;
 	

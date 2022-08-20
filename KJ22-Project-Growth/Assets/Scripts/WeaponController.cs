@@ -20,6 +20,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField, Required("Missing m_muzzleCheck on WeaponController.")]
     private WeaponMuzzleCheck m_muzzleCheck;
 
+    [SerializeField, Required("Missing m_character on WeaponController.")]
+    private CharacterController2D m_character;
+
     [SerializeField]
     private float m_bulletPerSecond = 5;
     private float m_currentShootCD = 0;
@@ -31,6 +34,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 1)]
     private float m_bulletSpawnRangeRatio = 0.5f;
+    
+    [SerializeField]
+    private float m_recoilImpulseForce = 1f;
 
     [SerializeField]
     private PoolObjectID m_poolableObjectID;
@@ -79,6 +85,8 @@ public class WeaponController : MonoBehaviour
             bullet.transform.up = dir;
             bullet.GetComponent<Rigidbody2D>().velocity = dir * m_bulletSpeed;
             bullet.Owner = m_growthComponent.Ownership;
+
+            m_character.Rigidbody.velocity += -dir * m_recoilImpulseForce;
 
             m_growthComponent.ConsumeEnergy(1);
             m_currentShootCD = 1 / m_bulletPerSecond;

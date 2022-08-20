@@ -549,7 +549,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &942013883
 GameObject:
@@ -817,8 +817,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ce4ab821abbc64a82e2469d841d298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_respawnersTransform: []
-  m_layerToRespawn: 0
+  m_respawnersTransform:
+  - {fileID: 1498078897}
+  - {fileID: 1142938063}
+  - {fileID: 1205688206}
+  m_layerToRespawn: 7
   RespawnVelocityX: {x: -3, y: 3}
   RespawnVelocityY: {x: 2, y: 6}
 --- !u!4 &1304745905
@@ -9962,7 +9965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1731232525550002474, guid: 80ce0549e6e37f64081ad6b2bf38ec72, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1731232525550002474, guid: 80ce0549e6e37f64081ad6b2bf38ec72, type: 3}
       propertyPath: m_AnchorMax.x
