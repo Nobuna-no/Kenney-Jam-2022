@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 2967318670834317397}
   - component: {fileID: 446850999938013969}
   - component: {fileID: 2967318670834317396}
+  - component: {fileID: 1590903130720153659}
   m_Layer: 0
   m_Name: BasePlayer
   m_TagString: Untagged
@@ -374,6 +375,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f3ea24bffa8ef4ebda84235f53e43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1590903130720153659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963073335907303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 09bb3911a2f6e86478a96ecf4f1bc5a0, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 38e1c589-bb2b-44a9-b1db-685be0bfc56e
+    m_ActionName: Player/Move
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af81ba11-e459-4b29-862c-23f4a757f043
+    m_ActionName: Player/Shoot
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04f2a726-66de-4e58-964b-09816e892a90
+    m_ActionName: Player/Jump
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd489a0c-5ceb-4977-8dfc-a2847e7bd230
+    m_ActionName: Player/MeleeAttack
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a6a33a7-8203-44ec-9389-69564656f8fb
+    m_ActionName: Player/Aim
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &9095507994544496229
 GameObject:
   m_ObjectHideFlags: 0
