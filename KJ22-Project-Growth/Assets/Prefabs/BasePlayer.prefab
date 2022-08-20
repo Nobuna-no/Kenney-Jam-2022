@@ -144,6 +144,9 @@ GameObject:
   - component: {fileID: 2967318670834317394}
   - component: {fileID: 446850999938013969}
   - component: {fileID: 2967318670834317396}
+  - component: {fileID: 8361253591709683110}
+  - component: {fileID: 5791760204518468464}
+  - component: {fileID: 4801222761177882966}
   m_Layer: 0
   m_Name: BasePlayer
   m_TagString: Untagged
@@ -165,6 +168,7 @@ Transform:
   m_Children:
   - {fileID: 4521906966240146000}
   - {fileID: 1173180203}
+  - {fileID: 2741215174098138551}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -261,7 +265,7 @@ MonoBehaviour:
   OnSizeRatioChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2967318670834317396}
+      - m_Target: {fileID: 5791760204518468464}
         m_TargetAssemblyTypeName: TransformResizer, Assembly-CSharp
         m_MethodName: UpdateSize
         m_Mode: 0
@@ -404,7 +408,7 @@ MonoBehaviour:
   m_moveSpeed: 1
   m_moveVerticalSpeed: 0.1
   m_jumpForce: 15
-  m_groundDetectorTransform: {fileID: 1173180203}
+  m_groundDetectorTransform: {fileID: 2741215174098138551}
   m_rayLenght: 0.1
   m_useDebugInputs: 1
   m_moveAxis: Horizontal
@@ -423,6 +427,122 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36f3ea24bffa8ef4ebda84235f53e43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8361253591709683110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963073335907303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a3125bd867aef44d8f03b4f41974e0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maxMoveSpeed: {x: 15, y: 30}
+  m_moveSpeed: 1
+  m_moveVerticalSpeed: 0.1
+  m_jumpForce: 15
+  m_groundDetectorTransform: {fileID: 1173180203}
+  m_rayLenght: 0.1
+  m_useDebugInputs: 1
+  m_moveAxis: Horizontal
+  m_moveVerticalAxis: Vertical
+  m_jumpKey: 32
+  CurrentVel: {x: 0, y: 0}
+--- !u!114 &5791760204518468464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963073335907303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f3ea24bffa8ef4ebda84235f53e43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4801222761177882966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963073335907303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 09bb3911a2f6e86478a96ecf4f1bc5a0, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 38e1c589-bb2b-44a9-b1db-685be0bfc56e
+    m_ActionName: Player/Move[/DualShock4GamepadHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af81ba11-e459-4b29-862c-23f4a757f043
+    m_ActionName: Player/Shoot[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID/leftTrigger,/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 04f2a726-66de-4e58-964b-09816e892a90
+    m_ActionName: Player/Jump[/DualShock4GamepadHID/buttonSouth,/Keyboard/space,/DualShock4GamepadHID/leftStick/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dd489a0c-5ceb-4977-8dfc-a2847e7bd230
+    m_ActionName: Player/MeleeAttack[/Mouse/leftButton,/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID/rightShoulder]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a6a33a7-8203-44ec-9389-69564656f8fb
+    m_ActionName: Player/Aim[/DualShock4GamepadHID/rightStick,/Mouse/position]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!1 &8303422679331942546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2741215174098138551}
+  m_Layer: 0
+  m_Name: GroundDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2741215174098138551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8303422679331942546}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.666, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2031231654399228487}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9095507994544496229
 GameObject:
   m_ObjectHideFlags: 0
