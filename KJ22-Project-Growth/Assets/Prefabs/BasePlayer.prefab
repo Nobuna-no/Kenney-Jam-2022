@@ -46,9 +46,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cursorPivotTransform: {fileID: 109354983}
-  m_bulletPerSecond: 5
+  m_growthComponent: {fileID: 2967318670834317397}
+  m_bulletPerSecond: 10
   m_bulletPrefab: {fileID: 8990313941690022714, guid: 4af0821ba1ec0354dbe020ee57dd454c, type: 3}
-  m_bulletSpeed: 5
+  m_bulletSpeed: 15
+  m_poolableObjectID: {fileID: 11400000, guid: f43c6673e1d680b418a39355bbc3c048, type: 2}
 --- !u!1 &1603475011
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbea14099722fd546b4368b44eec1054, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Ownership: 0
   m_initialEnergy: 50
   m_hitEnergyLose: 3
   m_EnergyToSizeCurve:

@@ -12,9 +12,12 @@ public class WeaponController : MonoBehaviour
 
     // [SerializeField, NaughtyAttributes.Required("Missing m_PlayerTransform.")]
     // private Transform m_PlayerTransform;
-    [SerializeField, NaughtyAttributes.Required("Missing m_cursorPivotTransform.")]
+    [SerializeField, NaughtyAttributes.Required("Missing m_cursorPivotTransform on WeaponController.")]
     private Transform m_cursorPivotTransform;
-    
+
+    [SerializeField, Required("Missing m_growthComponent on WeaponController.")]
+    private GrowthComponent m_growthComponent;
+
     [SerializeField]
     private float m_bulletPerSecond = 5;
     private float m_currentShootCD = 0;
@@ -23,6 +26,9 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     private float m_bulletSpeed = 5;
+
+    [SerializeField]
+    private PoolObjectID m_poolableObjectID;
 
     private bool m_wantToShoot = false;
 
@@ -65,18 +71,23 @@ public class WeaponController : MonoBehaviour
     }
 
     private void PistolShoot(Vector2 dir)
-    {
+    {        
+        if (m_growthComponent.CurrentEnergy <= 1)
+        {
+            return;
+        }
+
         if (m_currentShootCD <= 0f)
         {
-            var temp = GameObject.Instantiate(m_bulletPrefab.gameObject, new Vector3(this.transform.position.x + dir.x, this.transform.position.y + dir.y), this.transform.rotation);
+            IPoolableObject temp = GamePool.Instance.SpawnObject(m_poolableObjectID, this.transform.position + this.transform.up * Mathf.Sign(this.transform.localScale.x) * 1.1f);
+            BlobBullet bullet = temp.GetComponent<BlobBullet>();
 
-            temp.transform.position = this.transform.position + this.transform.up * 0.4f * Mathf.Sign(this.transform.localScale.x);
-            // temp.transform.localScale = new Vector3(this.transform.localScale.x, this.transform.localScale.y, this.transform.localScale.z);
+            bullet.transform.up = dir;
+            bullet.GetComponent<Rigidbody2D>().velocity = dir * m_bulletSpeed;
+            Debug.LogWarning("I need to know the owner!!! EPlayer");
+            // bullet.Owner = 
 
-            // temp.setDirection(dir);
-            temp.transform.up = dir;
-            temp.GetComponent<Rigidbody2D>().velocity = dir * m_bulletSpeed;
-
+            m_growthComponent.ConsumeEnergy(1);
             m_currentShootCD = 1 / m_bulletPerSecond;
         }
     }

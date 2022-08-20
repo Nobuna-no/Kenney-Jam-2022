@@ -11,7 +11,10 @@ public class GrowthComponent : MonoBehaviour
 {
 	[Header("Growth - Main Feature")]
 	[HorizontalLine(1, EColor.Orange)]
-	
+
+	[SerializeField]
+	private EPlayer m_Ownership;
+	public EPlayer Ownership => m_Ownership;
 	[SerializeField]
 	private int m_initialEnergy = 50;
 	[SerializeField]
@@ -30,6 +33,8 @@ public class GrowthComponent : MonoBehaviour
 	[HorizontalLine(1, EColor.Orange)]
 	[SerializeField, ProgressBar("Energy", 100, EColor.Green)]
 	private int m_currentEnergy = 50;
+	public int CurrentEnergy => m_currentEnergy;
+
 	public float GetSizeRatio()
 	{
 		return m_EnergyToSizeCurve.Evaluate((float)m_currentEnergy / m_initialEnergy);
