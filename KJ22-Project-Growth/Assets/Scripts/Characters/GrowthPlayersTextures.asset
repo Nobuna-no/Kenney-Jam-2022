@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c48ffd41d43c570419731a306fd17cde, type: 3}
+  m_Name: GrowthPlayersTextures
+  m_EditorClassIdentifier: 
+  m_player1Texture: {fileID: 21300000, guid: 24b8968bb463dfe44ad01be673b8e4bf, type: 3}
+  m_player1BlobTexture: {fileID: 21300000, guid: fab11407530cdce438a35fcf0463c473, type: 3}
+  m_player2Texture: {fileID: 21300000, guid: e35563ad4348e1548a684411ed6f3e06, type: 3}
+  m_player2BlobTexture: {fileID: 21300000, guid: 6d75bc25ea1f6be47bd5fb3245d0a688, type: 3}
+  m_player3Texture: {fileID: 21300000, guid: 4b7cbe98479ef8f4ea9ebeee092edc04, type: 3}
+  m_player3BlobTexture: {fileID: 21300000, guid: e36dbb118aca25c40bfc01e8590bee4b, type: 3}
+  m_player4Texture: {fileID: 21300000, guid: ab143af4fcd3c284ab613992243c47bd, type: 3}
+  m_player4BlobTexture: {fileID: 21300000, guid: 9aa67acb59b959a49983d7bcd59ff613, type: 3}

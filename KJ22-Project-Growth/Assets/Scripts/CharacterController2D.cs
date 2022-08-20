@@ -11,7 +11,7 @@ public class CharacterController2D : MonoBehaviour
 	[Header("Character Controller")]
 	[InfoBox("Provides basic method to control character.")]
 	[HorizontalLine(1, EColor.Orange)]
-	
+
 	[SerializeField]
 	private Vector2 m_maxMoveSpeed = new Vector2(5f, 10f);
 	[SerializeField, Min(0.1f)]
@@ -48,7 +48,7 @@ public class CharacterController2D : MonoBehaviour
 	private float m_stickinessVel = 0.75f;
 
 	private Rigidbody2D m_body;
-	private GrowthComponent m_growthComponent;
+	private GrowthCore m_growthComponent;
 	private Vector2 m_inputMovement = Vector2.zero;
 	
 	private RaycastHit2D[] hits = new RaycastHit2D[5];
@@ -62,11 +62,10 @@ public class CharacterController2D : MonoBehaviour
 
 	private UnityEngine.Events.UnityAction<Vector2> Aim;
 
-
 	private void Awake()
     {
 		m_body = GetComponent<Rigidbody2D>();
-		m_growthComponent = GetComponent<GrowthComponent>();
+		m_growthComponent = GetComponent<GrowthCore>();
 		m_weaponController = GetComponentInChildren<WeaponController>();
 
 		m_playerInput = GetComponent<PlayerInput>();

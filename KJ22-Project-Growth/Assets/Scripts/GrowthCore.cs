@@ -7,14 +7,19 @@ using NaughtyAttributes;
 [System.Serializable]
 public class FloatEvent : UnityEvent<float> {}
 
-public class GrowthComponent : MonoBehaviour
+public class GrowthCore : MonoBehaviour
 {
-	[Header("Growth - Main Feature")]
+	[Header("Growth Core")]
+	[InfoBox("Handles energy conversion for the main feature.")]
 	[HorizontalLine(1, EColor.Orange)]
 
 	[SerializeField]
-	private EPlayer m_Ownership;
-	public EPlayer Ownership => m_Ownership;
+	private EPlayerOwnership m_Ownership;
+	public EPlayerOwnership Ownership => m_Ownership;
+	
+	[SerializeField, Required()]
+	private SpriteRenderer m_coreRenderer;
+	
 	[SerializeField]
 	private int m_initialEnergy = 50;
 	[SerializeField]
@@ -65,8 +70,14 @@ public class GrowthComponent : MonoBehaviour
 		m_currentEnergy = m_initialEnergy;
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
 	}
-	
-	[Button("Add Energy", EButtonEnableMode.Playmode)] 
+
+    private void OnEnable()
+    {
+	    m_Ownership = PlayerManager.Instance.GetPlayerOwnership(this);
+	    m_coreRenderer.sprite = PlayerManager.Instance.PlayerAssets.GetPlayerSprite(m_Ownership);
+	}
+
+    [Button("Add Energy", EButtonEnableMode.Playmode)] 
 	private void Debug_AddEnergy()
 	{
 		AddEnergy(1);

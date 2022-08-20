@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -139,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_objectID: {fileID: 11400000, guid: f43c6673e1d680b418a39355bbc3c048, type: 2}
-  Owner: 0
   PlayerLayer: 6
 --- !u!114 &1257291135236387327
 MonoBehaviour:

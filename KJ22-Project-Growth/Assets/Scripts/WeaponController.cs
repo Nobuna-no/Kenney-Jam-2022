@@ -16,7 +16,9 @@ public class WeaponController : MonoBehaviour
     private Transform m_cursorPivotTransform;
 
     [SerializeField, Required("Missing m_growthComponent on WeaponController.")]
-    private GrowthComponent m_growthComponent;
+    private GrowthCore m_growthComponent;
+    [SerializeField, Required("Missing m_muzzleCheck on WeaponController.")]
+    private WeaponMuzzleCheck m_muzzleCheck;
 
     [SerializeField]
     private float m_bulletPerSecond = 5;
@@ -26,6 +28,9 @@ public class WeaponController : MonoBehaviour
 
     [SerializeField]
     private float m_bulletSpeed = 5;
+    [SerializeField]
+    [Range(0.1f, 1)]
+    private float m_bulletSpawnRangeRatio = 0.5f;
 
     [SerializeField]
     private PoolObjectID m_poolableObjectID;
@@ -53,13 +58,13 @@ public class WeaponController : MonoBehaviour
     {
         m_currentShootCD -= Time.fixedDeltaTime;
 
-        if (m_wantToShoot)
+        if (m_wantToShoot && m_muzzleCheck.CanShoot)
         {
-            PistolShoot(m_cursorPivotTransform.up);
+            ShootBullet(m_cursorPivotTransform.up);
         }
     }
-
-    private void PistolShoot(Vector2 dir)
+    
+    private void ShootBullet(Vector2 dir)
     {        
         if (m_growthComponent.CurrentEnergy <= 1)
         {
@@ -68,13 +73,12 @@ public class WeaponController : MonoBehaviour
 
         if (m_currentShootCD <= 0f)
         {
-            IPoolableObject temp = GamePool.Instance.SpawnObject(m_poolableObjectID, this.transform.position + this.transform.up * Mathf.Sign(this.transform.localScale.x) * 1.1f);
+            IPoolableObject temp = GamePool.Instance.SpawnObject(m_poolableObjectID, this.transform.position + this.transform.up * Mathf.Sign(this.transform.localScale.x) * m_bulletSpawnRangeRatio);
             BlobBullet bullet = temp.GetComponent<BlobBullet>();
 
             bullet.transform.up = dir;
             bullet.GetComponent<Rigidbody2D>().velocity = dir * m_bulletSpeed;
-            Debug.LogWarning("I need to know the owner!!! EPlayer");
-            // bullet.Owner = 
+            bullet.Owner = m_growthComponent.Ownership;
 
             m_growthComponent.ConsumeEnergy(1);
             m_currentShootCD = 1 / m_bulletPerSecond;
@@ -84,7 +88,6 @@ public class WeaponController : MonoBehaviour
     public void MouseAim(Vector2 mousePos)
     {
         Vector2 pos = Camera.main.ScreenToWorldPoint(mousePos);
-
         
         m_pos = new Vector2(pos.x - m_cursorPivotTransform.position.x,
              pos.y - m_cursorPivotTransform.position.y).normalized;

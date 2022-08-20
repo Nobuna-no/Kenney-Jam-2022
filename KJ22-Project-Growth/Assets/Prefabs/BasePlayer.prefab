@@ -47,9 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cursorPivotTransform: {fileID: 109354983}
   m_growthComponent: {fileID: 2967318670834317397}
-  m_bulletPerSecond: 10
+  m_muzzleCheck: {fileID: 5019089731905563237}
+  m_bulletPerSecond: 5
   m_bulletPrefab: {fileID: 8990313941690022714, guid: 4af0821ba1ec0354dbe020ee57dd454c, type: 3}
-  m_bulletSpeed: 15
+  m_bulletSpeed: 25
+  m_bulletSpawnRangeRatio: 0.5
   m_poolableObjectID: {fileID: 11400000, guid: f43c6673e1d680b418a39355bbc3c048, type: 2}
 --- !u!1 &1603475011
 GameObject:
@@ -61,7 +63,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1603475012}
   - component: {fileID: 1603475013}
-  - component: {fileID: 1603475014}
   m_Layer: 0
   m_Name: Rendering
   m_TagString: Untagged
@@ -136,18 +137,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1603475014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603475011}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5939d227258293a439d4ceb6d751beec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1641992510
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +147,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1641992511}
   - component: {fileID: 1641992512}
-  m_Layer: 6
+  - component: {fileID: 5019089731905563237}
+  - component: {fileID: 2639968648138500390}
+  m_Layer: 10
   m_Name: Cursor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,6 +223,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5019089731905563237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641992510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96663772432cdd34d939ed573bf19143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_terrainLayer: 0
+  m_activeColor: {r: 1, g: 1, b: 1, a: 1}
+  m_disableColor: {r: 0, g: 0, b: 0, a: 1}
+--- !u!61 &2639968648138500390
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641992510}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.2}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &4963073335907303579
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,10 +333,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3dc5bc9ff1b2d0c44b776d759c46e861, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -424,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Ownership: 0
+  m_coreRenderer: {fileID: 1603475013}
   m_initialEnergy: 50
   m_hitEnergyLose: 3
   m_EnergyToSizeCurve:
@@ -504,15 +537,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maxMoveSpeed: {x: 15, y: 30}
   m_moveSpeed: 1
-  m_moveVerticalSpeed: 5
-  m_jumpForce: 15
+  m_moveVerticalSpeed: 3
+  m_jumpForce: 12
   m_jumpDeadzone: 0.5
   m_useDebugInputs: 0
   m_moveAxis: Horizontal
   m_moveVerticalAxis: Vertical
   m_jumpKey: 32
   m_lastGroundNormal: {x: 0, y: 1}
-  m_stickinessVel: 0.75
+  m_stickinessVel: 0.7
 --- !u!114 &2967318670834317396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,7 +656,7 @@ MonoBehaviour:
   Mode: 1
   Timescale: 0
   Intensity: 0.02
-  MaximumVelocity: 1
+  MaximumVelocity: 5
   MinimumScale: {x: 0.5, y: 0.5}
   MaximumScale: {x: 1.5, y: 1.5}
   AutoSquashOnStop: 1

@@ -17,7 +17,7 @@ public class GrowthBlob : MonoBehaviour
     {
         if (collision.gameObject.layer == m_playerLayer)
         {
-            GrowthComponent gc = collision.gameObject.GetComponent<GrowthComponent>();
+            GrowthCore gc = collision.gameObject.GetComponent<GrowthCore>();
             gc.AddEnergy(1);
 
             transform.parent.gameObject.SetActive(false);
