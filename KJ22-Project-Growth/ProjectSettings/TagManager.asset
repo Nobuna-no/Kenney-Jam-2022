@@ -11,9 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - Blob
+  - BlobRendering
   - 
   - 
   - 
@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Far Background
+    uniqueID: 892116761
+    locked: 0
+  - name: Background
+    uniqueID: 3308500549
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 286051105
+    locked: 0
+  - name: Overlay
+    uniqueID: 1943462855
     locked: 0
