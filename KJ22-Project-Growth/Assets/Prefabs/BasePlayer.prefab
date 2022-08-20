@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 446850999938013969}
   - component: {fileID: 2967318670834317396}
   - component: {fileID: 1590903130720153659}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BasePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,13 +263,13 @@ MonoBehaviour:
         DebugActive: 0
         GameObjectToInstantiate: {fileID: 639099948334625118, guid: 2be24f52784f39d408f15fc8c69029c3, type: 3}
         PositionMode: 0
-        AlsoApplyRotation: 1
-        AlsoApplyScale: 1
+        AlsoApplyRotation: 0
+        AlsoApplyScale: 0
         TargetTransform: {fileID: 0}
         TargetPosition: {x: 0, y: 0, z: 0}
         PositionOffset: {x: 0, y: 0, z: 0}
         RandomizePosition: 1
-        RandomizedPositionMin: {x: -1, y: 1, z: 0}
+        RandomizedPositionMin: {x: -1, y: -1, z: 0}
         RandomizedPositionMax: {x: 1, y: 1, z: 0}
         ParentTransform: {fileID: 2031231654399228487}
         CreateObjectPool: 1
@@ -305,26 +305,38 @@ MonoBehaviour:
       time: 1
       value: 1
       inSlope: 1.1903973
-      outSlope: 7.124854
+      outSlope: 1.9996523
       tangentMode: 1
       weightedMode: 0
       inWeight: 0.15614235
-      outWeight: 0.33333334
+      outWeight: 0.14433813
     - serializedVersion: 3
       time: 2
-      value: 10
-      inSlope: 0
-      outSlope: 0
+      value: 3
+      inSlope: 0.098497875
+      outSlope: 0.098497875
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.20574152
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   OnDamageReceived:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2967318670834317395}
+        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Feedbacks
+        m_MethodName: PlayFeedbacks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnSizeRatioChanged:
     m_PersistentCalls:
       m_Calls:

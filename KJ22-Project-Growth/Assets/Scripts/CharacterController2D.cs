@@ -96,7 +96,7 @@ public class CharacterController2D : MonoBehaviour
 			m_body.gravityScale = 0;
 			m_lastGroundNormal = Vector2.down;
 			m_stickToTheCeiling = true;
-			m_canJump = true;
+			m_canJump = false;
 		}
 		// Ground floor.
 		else
