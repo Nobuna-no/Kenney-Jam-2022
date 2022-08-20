@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 446850999938013969}
   - component: {fileID: 2967318670834317396}
   m_Layer: 0
-  m_Name: BasePlayer
+  m_Name: BasePlayer-Backup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

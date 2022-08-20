@@ -7,21 +7,20 @@ using NaughtyAttributes;
 [System.Serializable]
 public class FloatEvent : UnityEvent<float> {}
 
-public class Growth : MonoBehaviour
+public class GrowthComponent : MonoBehaviour
 {
 	[Header("Growth - Main Feature")]
 	[HorizontalLine(1, EColor.Orange)]
 	
 	[SerializeField]
-	private int m_initialFat = 30;
+	private int m_initialEnergy = 50;
 	[SerializeField]
-	private int m_hitFatLose = 3;
+	private int m_hitEnergyLose = 3;
 	
 	[Tooltip("- t(1): Initial size")]
 	[SerializeField]
-	[CurveRange(0, 0.5f, 10, 10, EColor.Orange)]
-	private AnimationCurve m_SizeRatioLimits;
-	private float m_currentSizeRatio;
+	[CurveRange(0, 0.5f, 2, 10, EColor.Orange)]
+	private AnimationCurve m_EnergyToSizeCurve;
 	
 	[SerializeField]
 	private UnityEvent OnDamageReceived;
@@ -30,41 +29,41 @@ public class Growth : MonoBehaviour
 	
 	[HorizontalLine(1, EColor.Orange)]
 	[SerializeField, ProgressBar("Energy", 100, EColor.Green)]
-	private int m_currentFat = 30;
-	
+	private int m_currentEnergy = 50;
 	public float GetSizeRatio()
 	{
-		return m_SizeRatioLimits.Evaluate((float)m_currentFat / m_initialFat);
+		return m_EnergyToSizeCurve.Evaluate((float)m_currentEnergy / m_initialEnergy);
 	}
 	
-	public void AddFat(int quantity)
+	public void AddEnergy(int quantity)
 	{
-		m_currentFat += quantity;
+		m_currentEnergy += quantity;
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
 	}
 	
-	public void ConsumeFat(int quantity)
+	public void ConsumeEnergy(int quantity)
 	{
-		m_currentFat -= quantity;
+		m_currentEnergy -= quantity;
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
 	}
 	
 	[Button("Inflict Damage", EButtonEnableMode.Playmode)] 
 	public void ReceiveHit()
 	{
-		m_currentFat -= m_hitFatLose;	
+		m_currentEnergy -= m_hitEnergyLose;	
 		OnDamageReceived?.Invoke();
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
 	}
 	
 	private void Start()
 	{
+		m_currentEnergy = m_initialEnergy;
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
 	}
 	
 	[Button("Add Energy", EButtonEnableMode.Playmode)] 
 	private void Debug_AddEnergy()
 	{
-		AddFat(1);
+		AddEnergy(1);
 	}
 }

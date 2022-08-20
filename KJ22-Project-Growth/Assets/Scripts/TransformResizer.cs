@@ -4,12 +4,13 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
+[RequireComponent(typeof(Transform))]
 public class TransformResizer : MonoBehaviour, IGrowthResizable
 {
 	Transform m_Transform;
 	Vector3 m_initialSize;
 	
-	void Start()
+	void Awake()
 	{
 		m_Transform = GetComponent<Transform>();
 		m_initialSize = m_Transform.localScale;
