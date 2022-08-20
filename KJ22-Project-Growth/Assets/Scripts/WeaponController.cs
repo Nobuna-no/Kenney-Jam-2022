@@ -26,6 +26,8 @@ public class WeaponController : MonoBehaviour
 
     private bool m_wantToShoot = false;
 
+    private Vector2 m_pos;
+
     public void StartShooting()
     {
         m_wantToShoot = true;
@@ -36,22 +38,9 @@ public class WeaponController : MonoBehaviour
         m_wantToShoot = false;
     }
 
-    // Update is called once per frame
-    void Update()
-	{
-        Vector3 MousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        m_cursorPivotTransform.up = new Vector2(MousePosition.x - m_cursorPivotTransform.position.x,
-            MousePosition.y - m_cursorPivotTransform.position.y).normalized;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartShooting();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            StopShooting();
-        }
+    private void Update()
+    {
+        m_cursorPivotTransform.up = m_pos;
     }
 
     private void FixedUpdate()
@@ -79,5 +68,20 @@ public class WeaponController : MonoBehaviour
 
             m_currentShootCD = 1 / m_bulletPerSecond;
         }
+    }
+
+    public void MouseAim(Vector2 mousePos)
+    {
+        Vector2 pos = Camera.main.ScreenToWorldPoint(mousePos);
+
+        
+        m_pos = new Vector2(pos.x - m_cursorPivotTransform.position.x,
+             pos.y - m_cursorPivotTransform.position.y).normalized;
+    }
+
+    public void StickAim(Vector2 stickPos)
+    {
+        if (stickPos != Vector2.zero)
+            m_pos = stickPos;
     }
 }

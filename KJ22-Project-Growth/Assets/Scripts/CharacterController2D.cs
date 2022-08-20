@@ -57,29 +57,44 @@ public class CharacterController2D : MonoBehaviour
 	private PlayerInput m_playerInput;
 	private InputActionMap m_actionsMap;
 	private InputAction m_moveAction;
+	private WeaponController m_weaponController;
 
-    private void Awake()
+	private UnityEngine.Events.UnityAction<Vector2> Aim;
+
+
+	private void Awake()
     {
 		m_body = GetComponent<Rigidbody2D>();
 		m_growthComponent = GetComponent<GrowthComponent>();
+		m_weaponController = GetComponentInChildren<WeaponController>();
+
 		m_playerInput = GetComponent<PlayerInput>();
-		WeaponController weaponController = GetComponentInChildren<WeaponController>();
 		m_actionsMap = m_playerInput.actions.FindActionMap("Player");
 		m_moveAction = m_actionsMap.FindAction("Move");
 		var shoot = m_actionsMap.FindAction("Shoot");
 
-		shoot.started += _ => { print("started " + name); weaponController.StartShooting(); };
+		shoot.started += _ => { print("started " + name); m_weaponController.StartShooting(); };
 		shoot.performed += _ => { print("performed " + name); };
-		shoot.canceled += _ => { print("cancel " + name); weaponController.StopShooting();  };
+		shoot.canceled += _ => { print("cancel " + name); m_weaponController.StopShooting();  };
 	}
 
     private void OnEnable()
     {
 		m_actionsMap.Enable();
-    }
+
+		if (m_playerInput.currentControlScheme == "Gamepad")
+			Aim += m_weaponController.StickAim;
+		else
+			Aim += m_weaponController.MouseAim;
+	}
 
 	private void OnDisable()
 	{
+		if (m_playerInput.currentControlScheme == "Gamepad")
+			Aim -= m_weaponController.StickAim;
+		else
+			Aim -= m_weaponController.MouseAim;
+
 		m_actionsMap.Disable();
 	}
 
@@ -220,7 +235,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void OnAim(InputValue v)
     {
-		print("cam pos="+v.Get<Vector2>());
+		Aim(v.Get<Vector2>());
     }
 	#endregion
 }
