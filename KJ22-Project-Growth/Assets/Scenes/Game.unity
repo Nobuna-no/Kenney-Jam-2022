@@ -378,7 +378,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.87
+  orthographic size: 5.96
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -473,6 +473,22 @@ PrefabInstance:
       propertyPath: m_maps.Array.data[2]
       value: 
       objectReference: {fileID: 5569571672755810197, guid: fb9ce2fbd2c241a49bfa050cea622116, type: 3}
+    - target: {fileID: 7226273048652053527, guid: d4b0f42642f654b49a099b4afdf66bfe, type: 3}
+      propertyPath: m_menuDisable.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226273048652053527, guid: d4b0f42642f654b49a099b4afdf66bfe, type: 3}
+      propertyPath: m_menuDisable.Array.data[0]
+      value: 
+      objectReference: {fileID: 24117068}
+    - target: {fileID: 7226273048652053527, guid: d4b0f42642f654b49a099b4afdf66bfe, type: 3}
+      propertyPath: m_menuDisable.Array.data[1]
+      value: 
+      objectReference: {fileID: 259761243}
+    - target: {fileID: 7226273048652053527, guid: d4b0f42642f654b49a099b4afdf66bfe, type: 3}
+      propertyPath: m_menuDisable.Array.data[2]
+      value: 
+      objectReference: {fileID: 1418793401}
     - target: {fileID: 7226273049901829980, guid: d4b0f42642f654b49a099b4afdf66bfe, type: 3}
       propertyPath: m_Name
       value: '[MANAGERS]'
@@ -1453,22 +1469,36 @@ CompositeCollider2D:
   - m_Collider: {fileID: 1265577971}
     m_ColliderPaths:
     - - X: 100000000
-        Y: -10000000
-      - X: 90289356
-        Y: -10000000
-      - X: 90289356
-        Y: -10289298
-      - X: 90289297
-        Y: -10289357
-      - X: 79876020
-        Y: -10289357
-      - X: 79875998
-        Y: -10289352
-      - X: 79710674
-        Y: -10206688
-      - X: 79710644
-        Y: -10206639
-      - X: 79710644
+        Y: 60000000
+      - X: -100000000
+        Y: 60000000
+      - X: -100000000
+        Y: -60000000
+      - X: 100000000
+        Y: -60000000
+    - - X: -75909088
+        Y: -50206612
+      - X: -76064048
+        Y: -50000000
+      - X: -90000000
+        Y: -50000000
+      - X: -90000000
+        Y: 50000000
+      - X: 90000000
+        Y: 50000000
+      - X: 90000000
+        Y: 30000000
+      - X: 50000000
+        Y: 30000000
+      - X: 50000000
+        Y: 10000000
+      - X: 60000000
+        Y: 10000000
+      - X: 60000000
+        Y: 20000000
+      - X: 90000000
+        Y: 20000000
+      - X: 90000000
         Y: -10000000
       - X: 20000000
         Y: -10000000
@@ -1524,46 +1554,6 @@ CompositeCollider2D:
         Y: -50041324
       - X: -73925616
         Y: -50206612
-      - X: -75909088
-        Y: -50206612
-      - X: -76064048
-        Y: -50000000
-      - X: -90000000
-        Y: -50000000
-      - X: -90000000
-        Y: 50000000
-      - X: 90000000
-        Y: 50000000
-      - X: 90000000
-        Y: 30000000
-      - X: 50000000
-        Y: 30000000
-      - X: 50000000
-        Y: 10000000
-      - X: 60000000
-        Y: 10000000
-      - X: 60000000
-        Y: 20000000
-      - X: 90000000
-        Y: 20000000
-      - X: 90000000
-        Y: -2789039
-      - X: 90289350
-        Y: -3347072
-      - X: 90289356
-        Y: -3347095
-      - X: 90289356
-        Y: -10000000
-      - X: 100000000
-        Y: -10000000
-      - X: 100000000
-        Y: 60000000
-      - X: -100000000
-        Y: 60000000
-      - X: -100000000
-        Y: -60000000
-      - X: 100000000
-        Y: -60000000
   m_CompositePaths:
     m_Paths:
     - - {x: 9.99997, y: -6}
@@ -1600,12 +1590,7 @@ CompositeCollider2D:
       - {x: 6, y: 1.0000293}
       - {x: 6.0000296, y: 2}
       - {x: 9, y: 1.9999707}
-      - {x: 9.000003, y: -0.2789095}
-      - {x: 9.028936, y: -0.3347158}
-      - {x: 9.028907, y: -1.0289298}
-      - {x: 7.9875946, y: -1.0289326}
-      - {x: 7.971064, y: -1.0206472}
-      - {x: 7.9710355, y: -1}
+      - {x: 8.99997, y: -1}
       - {x: 2, y: -1.0000293}
       - {x: 2.0000293, y: -3}
       - {x: 3, y: -2.999971}
