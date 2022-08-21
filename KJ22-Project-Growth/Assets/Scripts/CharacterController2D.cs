@@ -71,17 +71,16 @@ public class CharacterController2D : MonoBehaviour
 
 		m_playerInput = GetComponent<PlayerInput>();
 		m_actionsMap = m_playerInput.actions.FindActionMap("Player");
-		m_moveAction = m_actionsMap.FindAction("Move");
-		var shoot = m_actionsMap.FindAction("Shoot");
-
-		shoot.started += _ => { print("started " + name); m_weaponController.StartShooting(); };
-		shoot.performed += _ => { print("performed " + name); };
-		shoot.canceled += _ => { print("cancel " + name); m_weaponController.StopShooting();  };
+		m_moveAction = m_actionsMap.FindAction("Move");		
 	}
 
     private void OnEnable()
     {
 		m_actionsMap.Enable();
+
+		var shoot = m_actionsMap.FindAction("Shoot");
+		shoot.started += _ => m_weaponController.StartShooting();
+		shoot.canceled += _ => m_weaponController.StopShooting();
 
 		if (m_playerInput.currentControlScheme == "Gamepad")
 			Aim += m_weaponController.StickAim;
@@ -95,6 +94,10 @@ public class CharacterController2D : MonoBehaviour
 			Aim -= m_weaponController.StickAim;
 		else
 			Aim -= m_weaponController.MouseAim;
+
+		var shoot = m_actionsMap.FindAction("Shoot");
+		shoot.started += _ => m_weaponController.StartShooting();
+		shoot.canceled += _ => m_weaponController.StopShooting();
 
 		m_actionsMap.Disable();
 	}
@@ -233,12 +236,10 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Shoot()
     {		
-		Debug.Log("shoot");
     }
 
 	public void OnMeleeAttack()
 	{
-		Debug.Log("attack");
 	}
 
 	public void OnAim(InputValue v)
