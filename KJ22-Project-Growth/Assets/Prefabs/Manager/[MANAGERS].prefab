@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edb2becfa9df71e44a7837f086d00c4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_targetFramerate: 60
 --- !u!1 &7226273049901829980
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,6 +179,22 @@ PrefabInstance:
     - target: {fileID: 2715645348891682140, guid: c644fe38a2a3ff848b160ec9fa28f64d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715645348891682141, guid: c644fe38a2a3ff848b160ec9fa28f64d, type: 3}
+      propertyPath: m_objectsDefinition.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715645348891682141, guid: c644fe38a2a3ff848b160ec9fa28f64d, type: 3}
+      propertyPath: m_physicsSpawningAverageDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715645348891682141, guid: c644fe38a2a3ff848b160ec9fa28f64d, type: 3}
+      propertyPath: m_objectsDefinition.Array.data[1].poolObject
+      value: 
+      objectReference: {fileID: 1550579790514190039, guid: 2be24f52784f39d408f15fc8c69029c3, type: 3}
+    - target: {fileID: 2715645348891682141, guid: c644fe38a2a3ff848b160ec9fa28f64d, type: 3}
+      propertyPath: m_objectsDefinition.Array.data[1].reserveSize
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c644fe38a2a3ff848b160ec9fa28f64d, type: 3}
