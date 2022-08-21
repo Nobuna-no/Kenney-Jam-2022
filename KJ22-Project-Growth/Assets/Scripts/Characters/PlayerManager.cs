@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerManager : SingletonManager<PlayerManager>
 {
     private int currentPlayerCount = 0;
-    private Dictionary<GrowthCore, EPlayerOwnership> PlayerAttribution = new Dictionary<GrowthCore, EPlayerOwnership>();
+    private Dictionary<EPlayerOwnership, GrowthCore> PlayerAttribution = new Dictionary<EPlayerOwnership, GrowthCore>();
 
 	[SerializeField]
 	private SO_CharacterSpriteMap m_playerAssets;
@@ -19,11 +19,26 @@ public class PlayerManager : SingletonManager<PlayerManager>
     // Update is called once per frame
     public EPlayerOwnership GetPlayerOwnership(GrowthCore character)
     {
-        if (!PlayerAttribution.ContainsKey(character))
+        if (!PlayerAttribution.ContainsValue(character))
         {
-            PlayerAttribution.Add(character, (EPlayerOwnership)(++currentPlayerCount));
+            EPlayerOwnership owner = (EPlayerOwnership)(++currentPlayerCount);
+            PlayerAttribution.Add(owner, character);
+            return owner;
         }
-        
-        return PlayerAttribution[character];
+        else
+        {
+            return character.Ownership;
+        }
+    }
+
+    public Vector2 GetDirectionToPlayer(EPlayerOwnership owner, Vector3 from)
+    {
+        if(!PlayerAttribution.ContainsKey(owner))
+        {
+            return Vector2.zero;
+        }
+
+        Transform target = PlayerAttribution[owner].transform;
+        return (target.position - from).normalized;
     }
 }

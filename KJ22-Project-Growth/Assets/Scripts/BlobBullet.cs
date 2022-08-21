@@ -6,7 +6,7 @@ using NaughtyAttributes;
 using MoreMountains.Feedbacks;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BlobBullet : IPoolableObject
+public class BlobBullet : PoolableObject
 {
 	private EPlayerOwnership m_owner;
 	public EPlayerOwnership Owner
@@ -26,20 +26,22 @@ public class BlobBullet : IPoolableObject
     private PoolObjectID m_blobObjectID;
     
     [SerializeField, MinMaxSlider(-10, 10)]
-    private Vector2 BlobSpawnImpulseForce;
-
-    private MMF_Player m_playerFeel;
+    private Vector2 m_blobSpawnImpulseForce = new Vector2(-3f,3f);
+	private TrailRenderer m_trailRenderer;
 	private SpriteRenderer m_renderer;
     private Rigidbody2D m_body;
     private void Awake()
     {
         m_body = GetComponent<Rigidbody2D>();
-        m_playerFeel = GetComponent<MMF_Player>();
 	    m_renderer = GetComponent<SpriteRenderer>();
+        m_trailRenderer = GetComponentInChildren<TrailRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Vector2 impactDir = -m_body.velocity.normalized;
+        bool hitOtherPlayer = false;
+
         if (collision.gameObject.layer == PlayerLayer)
         {
             GrowthCore growth = collision.GetComponent<GrowthCore>();
@@ -48,19 +50,29 @@ public class BlobBullet : IPoolableObject
                 return;
             }
 
-            growth.ReceiveHit();
+            growth.ReceiveHit(Owner, impactDir);
+            hitOtherPlayer = true;
         }
 
         GamePool.PhysicsSpawnInfo info = new GamePool.PhysicsSpawnInfo()
         {
             Origin = transform.position,
-            AverageDir = m_body.velocity,
-            ImpulseForceRange = BlobSpawnImpulseForce
+            AverageDir = impactDir,
+            ImpulseForceRange = m_blobSpawnImpulseForce
         };
 
-        GamePool.Instance.PhysicsSpawn(m_blobObjectID, 1, info);
-        // m_playerFeel.PlayFeedbacks();
+        PoolableObject[] objects = GamePool.Instance.PhysicsSpawn(m_blobObjectID, 1, info);
+        for (int i = 0, c = objects.Length; i < c; ++i)
+        {
+            GrowthBlob comp = objects[i].GetComponentInChildren<GrowthBlob>();
+            comp.Ownership = hitOtherPlayer ? m_owner : EPlayerOwnership.Unknow;
+        }
 
-        IsActive = false;
+        IsActive = false;        
+    }
+
+    protected override void OnActivation()
+    {
+        m_trailRenderer.Clear();
     }
 }

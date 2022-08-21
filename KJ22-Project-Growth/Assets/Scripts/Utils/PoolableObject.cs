@@ -2,8 +2,7 @@
 using UnityEngine;
 
 [DisallowMultipleComponent]
-[AddComponentMenu("Extension/Pool Object")]
-public abstract class IPoolableObject : MonoBehaviour
+public class PoolableObject : MonoBehaviour
 {
 	[SerializeField]
 	private PoolObjectID m_objectID;

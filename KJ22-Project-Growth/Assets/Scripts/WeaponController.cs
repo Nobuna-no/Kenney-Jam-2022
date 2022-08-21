@@ -79,7 +79,7 @@ public class WeaponController : MonoBehaviour
 
         if (m_currentShootCD <= 0f)
         {
-            IPoolableObject temp = GamePool.Instance.SpawnObject(m_poolableObjectID, this.transform.position + this.transform.up * Mathf.Sign(this.transform.localScale.x) * m_bulletSpawnRangeRatio);
+            PoolableObject temp = GamePool.Instance.SpawnObject(m_poolableObjectID, this.transform.position + this.transform.up * Mathf.Sign(this.transform.localScale.x) * m_bulletSpawnRangeRatio);
             BlobBullet bullet = temp.GetComponent<BlobBullet>();
 
             bullet.transform.up = dir;

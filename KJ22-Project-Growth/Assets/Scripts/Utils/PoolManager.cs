@@ -8,7 +8,7 @@ public abstract class PoolManager<T> : SingletonManager<T>
 	[System.Serializable]
 	protected class PoolObjectConfig
     {
-		public IPoolableObject poolObject;
+		public PoolableObject poolObject;
 		[Tooltip("Size of the initial reserve. Number of inactive object to instantiate by default.")]
 		public int reserveSize;
 	}
@@ -22,7 +22,7 @@ public abstract class PoolManager<T> : SingletonManager<T>
 	// All the prefabs type that could be spawned at some point
 	protected PoolObjectConfig[] m_objectsDefinition = null;
 	// protected List<IPoolableObject> m_pool = new List<IPoolableObject>();
-	protected Dictionary<PoolObjectID, List<IPoolableObject>> m_objectPoolPerID = new Dictionary<PoolObjectID, List<IPoolableObject>>();
+	protected Dictionary<PoolObjectID, List<PoolableObject>> m_objectPoolPerID = new Dictionary<PoolObjectID, List<PoolableObject>>();
 
 	public bool IsPaused { private set; get; }
 
@@ -62,13 +62,13 @@ public abstract class PoolManager<T> : SingletonManager<T>
     { }
 
 	// Usefull to initialize the new object and bind method to IPoolableObject.onActivation for instance.
-	protected virtual void OnObjectCreation(IPoolableObject obj)
+	protected virtual void OnObjectCreation(PoolableObject obj)
     { }
 
-	protected virtual void OnObjectSpawned(IPoolableObject obj)
+	protected virtual void OnObjectSpawned(PoolableObject obj)
 	{ }
 
-	public IPoolableObject SpawnObject(PoolObjectID id, Vector3 position)
+	public PoolableObject SpawnObject(PoolObjectID id, Vector3 position)
 	{
 		if (!m_objectPoolPerID.ContainsKey(id))
 		{
@@ -76,7 +76,7 @@ public abstract class PoolManager<T> : SingletonManager<T>
 			return null;
 		}
 
-		IPoolableObject target = m_objectPoolPerID[id].Find((obj) => { return !obj.IsActive; });
+		PoolableObject target = m_objectPoolPerID[id].Find((obj) => { return !obj.IsActive; });
 
 		if (target == null)
 		{
@@ -113,13 +113,13 @@ public abstract class PoolManager<T> : SingletonManager<T>
 		return new Vector3(circlePos.x, circlePos.y, 0.0f) + location;
 	}
 
-	private IPoolableObject[] InstantiateBatch(IPoolableObject prefab, int count)
+	private PoolableObject[] InstantiateBatch(PoolableObject prefab, int count)
 	{
-		IPoolableObject[] out_array = new IPoolableObject[count];
+		PoolableObject[] out_array = new PoolableObject[count];
 
 		for (int i = 0; i < count; ++i)
 		{
-			out_array[i] = Instantiate(prefab.gameObject, Vector3.zero, Quaternion.identity, m_reserveParent).GetComponent<IPoolableObject>();
+			out_array[i] = Instantiate(prefab.gameObject, Vector3.zero, Quaternion.identity, m_reserveParent).GetComponent<PoolableObject>();
 			out_array[i].ResetObject();
 			OnObjectCreation(out_array[i]);
 		}
@@ -134,7 +134,7 @@ public abstract class PoolManager<T> : SingletonManager<T>
 			PoolObjectID workingID = def.poolObject.ID;
 			if (!m_objectPoolPerID.ContainsKey(workingID))
             {
-				m_objectPoolPerID.Add(workingID, new List<IPoolableObject>(def.reserveSize));
+				m_objectPoolPerID.Add(workingID, new List<PoolableObject>(def.reserveSize));
 			}
 
 			// it's ok if we have more object.

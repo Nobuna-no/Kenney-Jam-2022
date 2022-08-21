@@ -16,7 +16,7 @@ public class GrowthCore : MonoBehaviour
 	[SerializeField]
 	private EPlayerOwnership m_Ownership;
 	public EPlayerOwnership Ownership => m_Ownership;
-	
+		
 	[SerializeField, Required()]
 	private SpriteRenderer m_coreRenderer;
 	
@@ -29,7 +29,13 @@ public class GrowthCore : MonoBehaviour
 	[SerializeField]
 	[CurveRange(0, 0.5f, 2, 10, EColor.Orange)]
 	private AnimationCurve m_EnergyToSizeCurve;
-	
+
+	[HorizontalLine(1, EColor.Orange)]
+	[SerializeField, Required("m_blobObjectID is missing on BlobBullet.")]
+	private PoolObjectID m_blobObjectID;
+	[SerializeField, MinMaxSlider(-10, 10)]
+	private Vector2 m_blobSpawnImpulseForce = new Vector2(-1f, 1f);
+
 	[SerializeField]
 	private UnityEvent OnDamageReceived;
 	[SerializeField]
@@ -58,9 +64,30 @@ public class GrowthCore : MonoBehaviour
 	}
 	
 	[Button("Inflict Damage", EButtonEnableMode.Playmode)] 
-	public void ReceiveHit()
+	public void Debug_InflictDamage()
+    {
+		ReceiveHit(EPlayerOwnership.Unknow, Vector2.up);
+	}
+
+	public void ReceiveHit(EPlayerOwnership attacker, Vector2 fromDir)
 	{
-		m_currentEnergy -= m_hitEnergyLose;	
+		m_currentEnergy -= m_hitEnergyLose;
+
+		GamePool.PhysicsSpawnInfo info = new GamePool.PhysicsSpawnInfo
+		{
+			AverageDir = fromDir,
+			ImpulseForceRange = m_blobSpawnImpulseForce,
+			Origin = transform.position
+		};
+
+		PoolableObject[] objects = GamePool.Instance.PhysicsSpawn(m_blobObjectID, m_hitEnergyLose, info);
+
+		for (int i = 0, c = objects.Length; i < c; ++i)
+        {
+			GrowthBlob comp = objects[i].GetComponentInChildren<GrowthBlob>();
+			comp.Ownership = attacker;
+		}
+
 		OnDamageReceived?.Invoke();
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
 	}

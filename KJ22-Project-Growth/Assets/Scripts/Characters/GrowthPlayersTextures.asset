@@ -12,11 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c48ffd41d43c570419731a306fd17cde, type: 3}
   m_Name: GrowthPlayersTextures
   m_EditorClassIdentifier: 
+  m_DefaultHeartTexture: {fileID: 1441073083, guid: 65e0f12d0e4d2974eaed99b2da8bb96b, type: 3}
   m_player1Texture: {fileID: 21300000, guid: 24b8968bb463dfe44ad01be673b8e4bf, type: 3}
   m_player1BlobTexture: {fileID: 21300000, guid: fab11407530cdce438a35fcf0463c473, type: 3}
+  m_player1HeartTexture: {fileID: 21300000, guid: 9261fcfdd8bdca54fa8f13641b18edc8, type: 3}
   m_player2Texture: {fileID: 21300000, guid: e35563ad4348e1548a684411ed6f3e06, type: 3}
   m_player2BlobTexture: {fileID: 21300000, guid: 6d75bc25ea1f6be47bd5fb3245d0a688, type: 3}
+  m_player2HeartTexture: {fileID: 21300000, guid: aa43ba83829a98046a29d9414f8642b0, type: 3}
   m_player3Texture: {fileID: 21300000, guid: 4b7cbe98479ef8f4ea9ebeee092edc04, type: 3}
   m_player3BlobTexture: {fileID: 21300000, guid: e36dbb118aca25c40bfc01e8590bee4b, type: 3}
+  m_player3HeartTexture: {fileID: 21300000, guid: 5a448f8995e22264ebf1ad9b7f71a1b8, type: 3}
   m_player4Texture: {fileID: 21300000, guid: ab143af4fcd3c284ab613992243c47bd, type: 3}
   m_player4BlobTexture: {fileID: 21300000, guid: 9aa67acb59b959a49983d7bcd59ff613, type: 3}
+  m_player4HeartTexture: {fileID: 21300000, guid: 91ed7e98847fd2f4e8e01acc348f2dfa, type: 3}
