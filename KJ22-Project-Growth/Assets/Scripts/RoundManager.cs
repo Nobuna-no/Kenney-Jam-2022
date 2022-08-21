@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +12,7 @@ public class RoundManager : MonoBehaviour
 {
     [SerializeField]
     private float m_roundDurationInSeconds = 60;
-    private float m_currentTime = 0;
+	private float m_currentTime = -1;
     [ReadOnly]
     private string textToDisplay;
 
@@ -29,11 +29,17 @@ public class RoundManager : MonoBehaviour
 
     // Update is called once per frame
     void FixedUpdate()
-    {
+	{
+		if(m_currentTime == -1f)
+		{
+			return;
+		}
+		
         m_currentTime -= Time.fixedDeltaTime;
 
         if (m_currentTime <= 0)
         {            
+        	m_currentTime = -1f;
             OnRoundEnd?.Invoke();
         }
         else
