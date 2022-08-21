@@ -7,12 +7,10 @@ public class PlayerManager : SingletonManager<PlayerManager>
     private int currentPlayerCount = 0;
     private Dictionary<EPlayerOwnership, GrowthCore> PlayerAttribution = new Dictionary<EPlayerOwnership, GrowthCore>();
     [SerializeField]
-    private Transform m_mapSpawnPoint;
-    [SerializeField]
     private GameObject[] m_maps;
     private int m_currentMapNb = 0;
     [SerializeField]
-    private GameObject m_menuCanvas;
+    private GameObject[] m_menuDisable;   
 
 	[SerializeField]
 	private SO_CharacterSpriteMap m_playerAssets;
@@ -52,19 +50,14 @@ public class PlayerManager : SingletonManager<PlayerManager>
     public void StartGame()
     {
         LoadMap();
-        m_menuCanvas.SetActive(false);
     }
     
     private void LoadMap()
     {
-        StartCoroutine(StartRoutine());
-    }
+        foreach (var o in m_menuDisable)
+            o.SetActive(false);
 
-    private IEnumerator StartRoutine()
-    {
-        Instantiate(m_maps[m_currentMapNb], m_mapSpawnPoint);
-
-        yield return new WaitForSeconds(1.5f);
+        Instantiate(m_maps[m_currentMapNb]);
 
         var spawnPoints = m_maps[m_currentMapNb].GetComponent<MapInfo>().SpawnPoints;
         int i = 0;
