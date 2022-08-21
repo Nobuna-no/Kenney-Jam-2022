@@ -140,6 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_objectID: {fileID: 11400000, guid: f43c6673e1d680b418a39355bbc3c048, type: 2}
   PlayerLayer: 6
+  m_blobObjectID: {fileID: 11400000, guid: f43c6673e1d680b418a39355bbc3c048, type: 2}
+  BlobSpawnImpulseForce: {x: 0, y: 6.0544934}
 --- !u!114 &1257291135236387327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,17 +232,17 @@ MonoBehaviour:
         DebugActive: 0
         GameObjectToInstantiate: {fileID: 639099948334625118, guid: 2be24f52784f39d408f15fc8c69029c3, type: 3}
         PositionMode: 0
-        AlsoApplyRotation: 0
+        AlsoApplyRotation: 1
         AlsoApplyScale: 0
         TargetTransform: {fileID: 0}
         TargetPosition: {x: 0, y: 0, z: 0}
-        PositionOffset: {x: 0, y: 0.3, z: 0}
+        PositionOffset: {x: 0, y: 0, z: 0}
         RandomizePosition: 0
         RandomizedPositionMin: {x: 0, y: 0, z: 0}
         RandomizedPositionMax: {x: 1, y: 1, z: 1}
         ParentTransform: {fileID: 0}
         CreateObjectPool: 1
-        ObjectPoolSize: 5
+        ObjectPoolSize: 50
         MutualizePools: 1
 --- !u!1 &4664494640934401045
 GameObject:

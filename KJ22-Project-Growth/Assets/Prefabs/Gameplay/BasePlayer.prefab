@@ -53,7 +53,7 @@ MonoBehaviour:
   m_bulletPerSecond: 5
   m_bulletPrefab: {fileID: 8990313941690022714, guid: 4af0821ba1ec0354dbe020ee57dd454c, type: 3}
   m_bulletSpeed: 25
-  m_bulletSpawnRangeRatio: 0.5
+  m_bulletSpawnRangeRatio: 0.3
   m_recoilImpulseForce: 5
   m_poolableObjectID: {fileID: 11400000, guid: f43c6673e1d680b418a39355bbc3c048, type: 2}
 --- !u!1 &1603475011
@@ -254,7 +254,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -265,7 +265,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.25, y: 1}
+  m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
 --- !u!1 &4963073335907303579
 GameObject:
@@ -336,10 +336,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
-  m_AngularDrag: 0.05
+  m_LinearDrag: 5
+  m_AngularDrag: 1
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 3dc5bc9ff1b2d0c44b776d759c46e861, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -538,10 +538,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3125bd867aef44d8f03b4f41974e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maxMoveSpeed: {x: 15, y: 30}
-  m_moveSpeed: 1
-  m_moveVerticalSpeed: 3
-  m_jumpForce: 12
+  m_maxMoveSpeed: {x: 15, y: 40}
+  m_moveSpeed: 3
+  m_moveVerticalSpeed: 5
+  m_jumpForce: 30
   m_jumpDeadzone: 0.5
   m_useDebugInputs: 0
   m_moveAxis: Horizontal
@@ -713,7 +713,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0578512, y: 1.0578512}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

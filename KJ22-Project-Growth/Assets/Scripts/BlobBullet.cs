@@ -5,7 +5,7 @@ using UnityEngine;
 using NaughtyAttributes;
 using MoreMountains.Feedbacks;
 
-[RequireComponent(typeof(MMF_Player))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class BlobBullet : IPoolableObject
 {
 	private EPlayerOwnership m_owner;
@@ -22,12 +22,19 @@ public class BlobBullet : IPoolableObject
     [SerializeField, Layer]
     private int PlayerLayer;
 
+    [SerializeField, Required("m_blobObjectID is missing on BlobBullet.")]
+    private PoolObjectID m_blobObjectID;
+    
+    [SerializeField, MinMaxSlider(-10, 10)]
+    private Vector2 BlobSpawnImpulseForce;
+
     private MMF_Player m_playerFeel;
 	private SpriteRenderer m_renderer;
-
+    private Rigidbody2D m_body;
     private void Awake()
     {
-	    m_playerFeel = GetComponent<MMF_Player>();
+        m_body = GetComponent<Rigidbody2D>();
+        m_playerFeel = GetComponent<MMF_Player>();
 	    m_renderer = GetComponent<SpriteRenderer>();
     }
 
@@ -44,7 +51,15 @@ public class BlobBullet : IPoolableObject
             growth.ReceiveHit();
         }
 
-        m_playerFeel.PlayFeedbacks();
+        GamePool.PhysicsSpawnInfo info = new GamePool.PhysicsSpawnInfo()
+        {
+            Origin = transform.position,
+            AverageDir = m_body.velocity,
+            ImpulseForceRange = BlobSpawnImpulseForce
+        };
+
+        GamePool.Instance.PhysicsSpawn(m_blobObjectID, 1, info);
+        // m_playerFeel.PlayFeedbacks();
 
         IsActive = false;
     }
