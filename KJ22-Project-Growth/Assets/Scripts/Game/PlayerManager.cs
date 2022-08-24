@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PlayerManager : SingletonManager<PlayerManager>
 {
-    private int currentPlayerCount = 0;
-    private Dictionary<EPlayerOwnership, GrowthCore> PlayerAttribution = new Dictionary<EPlayerOwnership, GrowthCore>();
-    [SerializeField]
-    private GameObject[] m_maps;
-    private int m_currentMapNb = 0;
-    [SerializeField]
-    private GameObject[] m_menuDisable;   
-
+    
 	[SerializeField]
 	private SO_CharacterSpriteMap m_playerAssets;
 	public SO_CharacterSpriteMap PlayerAssets => m_playerAssets;
+	
+	private Dictionary<EPlayerOwnership, GrowthCore> PlayerAttribution = new Dictionary<EPlayerOwnership, GrowthCore>();
+	
+	private int currentPlayerCount = 0;
 	
     protected override PlayerManager GetInstance()
     {
@@ -47,27 +44,40 @@ public class PlayerManager : SingletonManager<PlayerManager>
         return (target.position - from).normalized;
     }
 
-    public void StartGame()
+	public int GetPlayers(out GrowthCore[] out_players)
     {
-        LoadMap();
-    }
-    
-    private void LoadMap()
-    {
-        foreach (var o in m_menuDisable)
-            o.SetActive(false);
+        out_players = new GrowthCore[PlayerAttribution.Count];
 
-        Instantiate(m_maps[m_currentMapNb]);
-
-        var spawnPoints = m_maps[m_currentMapNb].GetComponent<MapInfo>().SpawnPoints;
         int i = 0;
         foreach (var p in PlayerAttribution)
         {
-            p.Value.transform.position = spawnPoints[i].position;
-            i++;
+            out_players[i++] = p.Value;
         }
 
-        if (++m_currentMapNb >= m_maps.Length)
-            m_currentMapNb = 0;
+        return i;
     }
+	
+    //public void StartGame()
+    //{
+    //    LoadMap();
+    //}
+    
+    //private void LoadMap()
+    //{
+    //    foreach (var o in m_menuDisable)
+    //        o.SetActive(false);
+
+    //    Instantiate(m_maps[m_currentMapNb]);
+
+    //    var spawnPoints = m_maps[m_currentMapNb].GetComponent<MapInfo>().SpawnPoints;
+    //    int i = 0;
+    //    foreach (var p in PlayerAttribution)
+    //    {
+    //        p.Value.transform.position = spawnPoints[i].position;
+    //        i++;
+    //    }
+
+    //    if (++m_currentMapNb >= m_maps.Length)
+    //        m_currentMapNb = 0;
+    //}
 }

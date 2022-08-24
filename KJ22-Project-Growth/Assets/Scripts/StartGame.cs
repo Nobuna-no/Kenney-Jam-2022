@@ -35,7 +35,7 @@ public class StartGame : MonoBehaviour
 
     private void StartTheGame()
     {
-	    m_playerManager.StartGame();
+	    // m_playerManager.StartGame();
 	    OnGameStart?.Invoke();
 	    started = true;
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2923625115334604084}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: P3-Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8435279135938310141}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: P4-Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1774,27 +1774,11 @@ CompositeCollider2D:
       - X: 30289256
         Y: -10289257
     - - X: 100289256
-        Y: -20289356
-      - X: 100289297
-        Y: -20289356
-      - X: 100289356
-        Y: -20289297
-      - X: 100289356
-        Y: -10289249
-      - X: 100289353
-        Y: -10289233
-      - X: 100206701
-        Y: -10041261
-      - X: 100206648
-        Y: -10041223
-      - X: 89999900
-        Y: -10041223
-      - X: 89999900
-        Y: -9999959
-      - X: 89999959
-        Y: -9999900
+        Y: -10289257
+      - X: 100206616
+        Y: -10041323
       - X: 90289256
-        Y: -9999900
+        Y: -10041323
       - X: 90289256
         Y: -9793389
       - X: 89710744
@@ -1827,28 +1811,12 @@ CompositeCollider2D:
         Y: -9958677
       - X: -90206616
         Y: -9958677
-      - X: -90247836
-        Y: -9999900
-      - X: -89999959
-        Y: -9999900
-      - X: -89999900
-        Y: -9999959
-      - X: -89999900
-        Y: -10041223
-      - X: -100041335
-        Y: -10041223
-      - X: -100041363
-        Y: -10041232
-      - X: -100289332
-        Y: -10206542
-      - X: -100289356
-        Y: -10206586
-      - X: -100289356
-        Y: -20289297
-      - X: -100289297
-        Y: -20289356
+      - X: -90289256
+        Y: -10041323
+      - X: -100041320
+        Y: -10041323
       - X: -100289256
-        Y: -20289356
+        Y: -10206611
       - X: -100289256
         Y: -40289256
       - X: -59710744
@@ -1892,7 +1860,7 @@ CompositeCollider2D:
       - {x: -3.0289257, y: 0.9793096}
       - {x: -3.0288963, y: -1.0289257}
     - - {x: 10.028896, y: -4.0289254}
-      - {x: 10.020637, y: -1.0041217}
+      - {x: 10.020634, y: -1.0041317}
       - {x: 8.971066, y: -0.97934663}
       - {x: 7.995868, y: -1.9297632}
       - {x: 7.995839, y: -2.0041325}
@@ -1902,7 +1870,7 @@ CompositeCollider2D:
       - {x: -5.9793673, y: -2.0041316}
       - {x: -7.979346, y: -1.9710668}
       - {x: -8.929763, y: -0.995868}
-      - {x: -10.028936, y: -1.0206871}
+      - {x: -10.028926, y: -1.0206896}
       - {x: -10.028896, y: -4.0289254}
   m_VertexDistance: 0.05
   m_OffsetDistance: 0.00005
@@ -1916,7 +1884,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1341031459530867593}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: P1-Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1947,7 +1915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4212441458652885992}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: P2-Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
