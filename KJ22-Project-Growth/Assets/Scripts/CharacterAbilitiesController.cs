@@ -4,10 +4,10 @@ using UnityEngine;
 
 using NaughtyAttributes;
 
-public class WeaponController : MonoBehaviour
+public class CharacterAbilitiesController : MonoBehaviour
 {
-    [Header("Growth Blob")]
-    [InfoBox("Handle Cursor and weaponry.")]
+    [Header("Character Abilities Controller")]
+    [InfoBox("Handles cursor and skills.")]
     [HorizontalLine(1, EColor.Orange)]
 
     // [SerializeField, NaughtyAttributes.Required("Missing m_PlayerTransform.")]
@@ -15,13 +15,13 @@ public class WeaponController : MonoBehaviour
     [SerializeField, NaughtyAttributes.Required("Missing m_cursorPivotTransform on WeaponController.")]
     private Transform m_cursorPivotTransform;
 
-    [SerializeField, Required("Missing m_growthComponent on WeaponController.")]
-    private GrowthCore m_growthComponent;
+    [SerializeField]
+    private CharacterGrowthCore m_growthComponent;
     [SerializeField, Required("Missing m_muzzleCheck on WeaponController.")]
     private WeaponMuzzleCheck m_muzzleCheck;
 
     [SerializeField, Required("Missing m_character on WeaponController.")]
-    private CharacterController2D m_character;
+    private CharacterMovementAndController m_character;
 
     [SerializeField]
     private float m_bulletPerSecond = 5;
@@ -54,6 +54,11 @@ public class WeaponController : MonoBehaviour
     {
         m_wantToShoot = false;
     }
+
+	private void Awake()
+	{
+		m_growthComponent = GetComponentInParent<CharacterGrowthCore>();
+	}
 
     private void Update()
     {

@@ -10,8 +10,6 @@ public class GameStateMachine : NobunAtelier.StateMachineComponent<GameStateDefi
     [SerializeField]
     private GameStateDefinition m_loadingMenuState;
 
-    [SerializeField]
-    private bool m_displayStatesDebug = false;
     private Vector2 scrollPos;
     
     [SerializeField]

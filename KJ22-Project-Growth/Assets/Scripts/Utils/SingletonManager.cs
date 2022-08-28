@@ -7,9 +7,6 @@ public abstract class SingletonManager<T> : MonoBehaviour
     protected static T m_instance = null;
 
     protected virtual void Constructor() { }
-    public virtual void StartManager() { }
-    public virtual void PauseManager(bool isPaused) { }
-    public virtual void ResetManager() { }
     protected abstract T GetInstance();
 
     private void Awake()

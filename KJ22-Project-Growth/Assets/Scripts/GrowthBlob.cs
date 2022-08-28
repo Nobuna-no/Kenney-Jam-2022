@@ -69,14 +69,14 @@ public class GrowthBlob : MonoBehaviour
             if (m_ownership != EPlayerOwnership.Unknow)
             {
                 // else check ownership
-                GrowthCore growth = collision.GetComponent<GrowthCore>();
+                CharacterGrowthCore growth = collision.GetComponent<CharacterGrowthCore>();
                 if (growth == null || growth.Ownership != m_ownership)
                 {
                     return;
                 }
             }
 
-            GrowthCore gc = collision.gameObject.GetComponent<GrowthCore>();
+            CharacterGrowthCore gc = collision.gameObject.GetComponent<CharacterGrowthCore>();
             gc.AddEnergy(1);
 
             transform.parent.gameObject.SetActive(false);

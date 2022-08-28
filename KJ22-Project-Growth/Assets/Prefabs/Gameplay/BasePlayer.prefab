@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_cursorPivotTransform: {fileID: 109354983}
-  m_growthComponent: {fileID: 2967318670834317397}
+  m_growthComponent: {fileID: 0}
   m_muzzleCheck: {fileID: 5019089731905563237}
   m_character: {fileID: 446850999938013969}
   m_bulletPerSecond: 5
@@ -278,10 +278,11 @@ GameObject:
   - component: {fileID: 2031231654399228487}
   - component: {fileID: 3090535062659822298}
   - component: {fileID: 7529092681383632377}
-  - component: {fileID: 2967318670834317397}
   - component: {fileID: 446850999938013969}
   - component: {fileID: 2967318670834317396}
   - component: {fileID: 1590903130720153659}
+  - component: {fileID: 855020187483732903}
+  - component: {fileID: 4650487600177456338}
   m_Layer: 6
   m_Name: BasePlayer
   m_TagString: Untagged
@@ -343,88 +344,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &2967318670834317397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4963073335907303579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbea14099722fd546b4368b44eec1054, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Ownership: 0
-  m_coreRenderer: {fileID: 1603475013}
-  m_initialEnergy: 50
-  m_hitEnergyLose: 3
-  m_EnergyToSizeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.5
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.1903973
-      outSlope: 1.9996523
-      tangentMode: 1
-      weightedMode: 0
-      inWeight: 0.15614235
-      outWeight: 0.14433813
-    - serializedVersion: 3
-      time: 2
-      value: 3
-      inSlope: 0.098497875
-      outSlope: 0.098497875
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.20574152
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  m_blobObjectID: {fileID: 11400000, guid: a17f94d6308718f4c83f5042b4f416c0, type: 2}
-  m_blobSpawnImpulseForce: {x: -1, y: 1}
-  OnDamageReceived:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MoreMountains.Feedbacks.MMF_Player, MoreMountains.Feedbacks
-        m_MethodName: PlayFeedbacks
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSizeRatioChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2967318670834317396}
-        m_TargetAssemblyTypeName: TransformResizer, Assembly-CSharp
-        m_MethodName: UpdateSize
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_currentEnergy: 50
 --- !u!114 &446850999938013969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,6 +429,69 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &855020187483732903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963073335907303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac54d40723919eb4585b0445b8e71f94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Ownership: 0
+  m_coreRenderer: {fileID: 1603475013}
+  m_initialEnergy: 50
+  m_hitEnergyLose: 3
+  m_EnergyToSizeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 9.5
+      outSlope: 9.5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 2
+      value: 10
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  m_blobObjectID: {fileID: 11400000, guid: a17f94d6308718f4c83f5042b4f416c0, type: 2}
+  m_blobSpawnImpulseForce: {x: -3, y: 3}
+  OnDamageReceived:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSizeRatioChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_currentEnergy: 50
+--- !u!114 &4650487600177456338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963073335907303579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec2f5be467dc1de41b33d6b48c4012ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lobbyReady: 0
+  m_InitSucessful: 0
 --- !u!1 &8779273608050177630
 GameObject:
   m_ObjectHideFlags: 0

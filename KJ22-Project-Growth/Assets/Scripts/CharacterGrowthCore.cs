@@ -7,7 +7,7 @@ using NaughtyAttributes;
 [System.Serializable]
 public class FloatEvent : UnityEvent<float> {}
 
-public class GrowthCore : MonoBehaviour
+public class CharacterGrowthCore : MonoBehaviour
 {
 	[Header("Growth Core")]
 	[InfoBox("Handles energy conversion for the main feature.")]
@@ -94,14 +94,10 @@ public class GrowthCore : MonoBehaviour
 	
 	private void Start()
 	{
+		m_Ownership = PlayerManager.Instance.GetPlayerOwnership(GetComponent<Player>());
+		m_coreRenderer.sprite = PlayerManager.Instance.PlayerAssets.GetPlayerSprite(m_Ownership);
 		m_currentEnergy = m_initialEnergy;
 		OnSizeRatioChanged?.Invoke(GetSizeRatio());
-	}
-
-    private void OnEnable()
-    {
-	    m_Ownership = PlayerManager.Instance.GetPlayerOwnership(this);
-	    m_coreRenderer.sprite = PlayerManager.Instance.PlayerAssets.GetPlayerSprite(m_Ownership);
 	}
 
     [Button("Add Energy", EButtonEnableMode.Playmode)] 

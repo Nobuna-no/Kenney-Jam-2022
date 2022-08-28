@@ -44,7 +44,7 @@ public class BlobBullet : PoolableObject
 
         if (collision.gameObject.layer == PlayerLayer)
         {
-            GrowthCore growth = collision.GetComponent<GrowthCore>();
+            CharacterGrowthCore growth = collision.GetComponent<CharacterGrowthCore>();
             if(growth == null || growth.Ownership == Owner)
             {
                 return;

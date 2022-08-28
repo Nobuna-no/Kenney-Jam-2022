@@ -8,7 +8,7 @@ using NaughtyAttributes;
 [System.Serializable]
 public class TextEvent : UnityEvent<string> { }
 
-public class RoundManager : MonoBehaviour
+public class RoundManager : NobunAtelier.StateComponent<GameStateDefinition>
 {
     [SerializeField]
     private float m_roundDurationInSeconds = 60;
@@ -19,6 +19,22 @@ public class RoundManager : MonoBehaviour
     public UnityEvent OnRoundBegin;
     public TextEvent OnTimeUpdate;
     public UnityEvent OnRoundEnd;
+
+	public override void Enter()
+	{
+		GameBegin();
+	}
+
+    protected void GameBegin()
+	{
+		PlayerManager.Instance.BlockPlayerInputs(false);
+        StartRound();
+    }
+
+    protected void GameOver()
+    {
+        OnRoundEnd?.Invoke();
+    }
 
     [Button("Start Round")]
     public void StartRound()
@@ -40,11 +56,11 @@ public class RoundManager : MonoBehaviour
         if (m_currentTime <= 0)
         {            
         	m_currentTime = -1f;
-            OnRoundEnd?.Invoke();
+            GameOver();
         }
         else
         {
-            textToDisplay = m_currentTime.ToString("#.#");
+            textToDisplay = ((int)m_currentTime).ToString();
             OnTimeUpdate?.Invoke(textToDisplay);
         }
     }

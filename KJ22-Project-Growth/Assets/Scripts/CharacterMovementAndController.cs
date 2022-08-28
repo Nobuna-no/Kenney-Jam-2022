@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class CharacterController2D : MonoBehaviour
+public class CharacterMovementAndController : MonoBehaviour
 {
 	[Header("Character Controller")]
-	[InfoBox("Provides basic method to control character.")]
+	[InfoBox("Provides method to control character and handles the movement.")]
 	[HorizontalLine(1, EColor.Orange)]
 
 	[SerializeField]
@@ -49,7 +49,7 @@ public class CharacterController2D : MonoBehaviour
 
 	private Rigidbody2D m_body;
 	public Rigidbody2D Rigidbody => m_body;
-	private GrowthCore m_growthComponent;
+	private CharacterGrowthCore m_growthComponent;
 	private Vector2 m_inputMovement = Vector2.zero;
 	
 	private RaycastHit2D[] hits = new RaycastHit2D[5];
@@ -59,15 +59,15 @@ public class CharacterController2D : MonoBehaviour
 	private PlayerInput m_playerInput;
 	private InputActionMap m_actionsMap;
 	private InputAction m_moveAction;
-	private WeaponController m_weaponController;
+	private CharacterAbilitiesController m_weaponController;
 
 	private UnityEngine.Events.UnityAction<Vector2> Aim;
 
 	private void Awake()
     {
 		m_body = GetComponent<Rigidbody2D>();
-		m_growthComponent = GetComponent<GrowthCore>();
-		m_weaponController = GetComponentInChildren<WeaponController>();
+		m_growthComponent = GetComponent<CharacterGrowthCore>();
+		m_weaponController = GetComponentInChildren<CharacterAbilitiesController>();
 
 		m_playerInput = GetComponent<PlayerInput>();
 		m_actionsMap = m_playerInput.actions.FindActionMap("Player");
@@ -79,8 +79,8 @@ public class CharacterController2D : MonoBehaviour
 		m_actionsMap.Enable();
 
 		var shoot = m_actionsMap.FindAction("Shoot");
-		shoot.started += _ => m_weaponController.StartShooting();
-		shoot.canceled += _ => m_weaponController.StopShooting();
+		shoot.started += PlayerStartShooting;
+		shoot.canceled += PlayerStopShooting;
 
 		if (m_playerInput.currentControlScheme == "Gamepad")
 			Aim += m_weaponController.StickAim;
@@ -96,10 +96,20 @@ public class CharacterController2D : MonoBehaviour
 			Aim -= m_weaponController.MouseAim;
 
 		var shoot = m_actionsMap.FindAction("Shoot");
-		shoot.started += _ => m_weaponController.StartShooting();
-		shoot.canceled += _ => m_weaponController.StopShooting();
-
+		shoot.started -= PlayerStartShooting;
+		shoot.canceled -= PlayerStopShooting;
+		
 		m_actionsMap.Disable();
+	}
+
+	private void PlayerStartShooting(CallbackContext ccontext)
+    {
+		m_weaponController.StartShooting();
+	}
+
+	private void PlayerStopShooting(CallbackContext ccontext)
+	{
+		m_weaponController.StopShooting();
 	}
 
 	private void Update()

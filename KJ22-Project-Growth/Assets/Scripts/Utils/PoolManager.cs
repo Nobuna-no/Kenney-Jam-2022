@@ -24,19 +24,7 @@ public abstract class PoolManager<T> : SingletonManager<T>
 	// protected List<IPoolableObject> m_pool = new List<IPoolableObject>();
 	protected Dictionary<PoolObjectID, List<PoolableObject>> m_objectPoolPerID = new Dictionary<PoolObjectID, List<PoolableObject>>();
 
-	public bool IsPaused { private set; get; }
-
-	public sealed override void StartManager()
-	{
-		OnPoolManagerStart();
-	}
-
-	public sealed override void PauseManager(bool isPaused)
-	{
-		IsPaused = isPaused;
-	}
-
-	public sealed override void ResetManager()
+	public void ResetManager()
 	{
 		foreach (var key in m_objectPoolPerID.Keys)
 		{
@@ -50,12 +38,6 @@ public abstract class PoolManager<T> : SingletonManager<T>
 
 		OnPoolManagerReset();
 	}
-
-	// To override and use as Unity.Start
-	protected virtual void OnPoolManagerStart()
-	{
-
-	}	
 
 	// Called once all the object has been reset.
 	protected virtual void OnPoolManagerReset()

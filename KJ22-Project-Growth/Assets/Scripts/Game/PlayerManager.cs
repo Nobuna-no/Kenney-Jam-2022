@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : SingletonManager<PlayerManager>
 {
@@ -9,28 +10,41 @@ public class PlayerManager : SingletonManager<PlayerManager>
 	private SO_CharacterSpriteMap m_playerAssets;
 	public SO_CharacterSpriteMap PlayerAssets => m_playerAssets;
 	
-	private Dictionary<EPlayerOwnership, GrowthCore> PlayerAttribution = new Dictionary<EPlayerOwnership, GrowthCore>();
+	private Dictionary<EPlayerOwnership, Player> PlayerAttribution = new Dictionary<EPlayerOwnership, Player>();
 	
 	private int currentPlayerCount = 0;
-	
+    
+    private PlayerInputManager m_playerInputManager;
+
     protected override PlayerManager GetInstance()
     {
         return this;
     }
 
-    // Update is called once per frame
-    public EPlayerOwnership GetPlayerOwnership(GrowthCore character)
+    public void AddPlayer(Player character)
     {
         if (!PlayerAttribution.ContainsValue(character))
         {
             EPlayerOwnership owner = (EPlayerOwnership)(++currentPlayerCount);
             PlayerAttribution.Add(owner, character);
-            return owner;
         }
-        else
+    }
+
+    // Update is called once per frame
+    public EPlayerOwnership GetPlayerOwnership(Player character)
+    {        
+        if (PlayerAttribution.ContainsValue(character))
         {
-            return character.Ownership;
+            foreach (var p in PlayerAttribution)
+            {
+                if(p.Value == character)
+                {
+                    return p.Key;
+                }
+            }
         }
+
+        return EPlayerOwnership.Unknow;
     }
 
     public Vector2 GetDirectionToPlayer(EPlayerOwnership owner, Vector3 from)
@@ -44,9 +58,9 @@ public class PlayerManager : SingletonManager<PlayerManager>
         return (target.position - from).normalized;
     }
 
-	public int GetPlayers(out GrowthCore[] out_players)
+	public int GetPlayers(out Player[] out_players)
     {
-        out_players = new GrowthCore[PlayerAttribution.Count];
+        out_players = new Player[PlayerAttribution.Count];
 
         int i = 0;
         foreach (var p in PlayerAttribution)
@@ -56,28 +70,12 @@ public class PlayerManager : SingletonManager<PlayerManager>
 
         return i;
     }
-	
-    //public void StartGame()
-    //{
-    //    LoadMap();
-    //}
-    
-    //private void LoadMap()
-    //{
-    //    foreach (var o in m_menuDisable)
-    //        o.SetActive(false);
 
-    //    Instantiate(m_maps[m_currentMapNb]);
-
-    //    var spawnPoints = m_maps[m_currentMapNb].GetComponent<MapInfo>().SpawnPoints;
-    //    int i = 0;
-    //    foreach (var p in PlayerAttribution)
-    //    {
-    //        p.Value.transform.position = spawnPoints[i].position;
-    //        i++;
-    //    }
-
-    //    if (++m_currentMapNb >= m_maps.Length)
-    //        m_currentMapNb = 0;
-    //}
+    public void BlockPlayerInputs(bool value)
+    {
+        foreach (var p in PlayerAttribution)
+        {
+            p.Value.BlockInput(value);
+        }
+    }
 }
